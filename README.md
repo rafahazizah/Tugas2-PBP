@@ -1,4 +1,4 @@
-Link aplkasi : https://fix-pacil-mart.adaptable.app/
+Link aplkasi : https://app-pacilmart-pbp.adaptable.app/main/
 
 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 <!-- MEMNBUAT PROJEK DJANGO -->
@@ -46,7 +46,7 @@ Link aplkasi : https://fix-pacil-mart.adaptable.app/
 - Masukkan nama app sesuai keinginan
 - Centang bagian HTTP Listener on PORT dan tekan depoly app dan tunggu samapai selesai.
 
-2. Bagan : ristek.link/Bagan-PBP
+2. Bagan : ristek.link/Bagan-PBP  
 <!-- PENJELASAN BAGAN -->
 - Pertama-tama request dari user pertama kali akan diterima dari URL
 - Setelah menemukan kecocokan URL dengan pola yang ada dalam urls.py, maka request akan diteruskan ke views.py

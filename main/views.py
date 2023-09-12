@@ -5,8 +5,6 @@ def show_main(request):
         'nama_aplikasi': 'Pacil Mart',
         'name' : 'Rafah Azizah' ,
         'kelas': 'PBP D',
-        # 'Price' : '17.000' ,
-        # 'Description' : 'Sabun pembersih badan',
 
     }
 

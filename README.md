@@ -1,7 +1,7 @@
-Link aplkasi : https://app-pacilmart-pbp.adaptable.app/main/
+Link aplikasi : https://app-pacilmart-pbp.adaptable.app/main/
 
 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
-<!-- MEMNBUAT PROJEK DJANGO -->
+<!-- MEMBUAT PROJEK DJANGO -->
 - pertama membuat direktori utama di dalam Lokal
 - Kemudian, membuat virtual environment menggunakan perintah      (python -m venv env)
 - Setelah itu membaut dependencies yang dimana dependencies itu disimpan dalam file bernama requirements.txt, kemudian install dependencies dengan perintah (pip install -r requirements.txt), lalu membaut nama proyek django pacil_mart mengguankan perintah (django-admin startproject shopping_list .)
@@ -27,8 +27,8 @@ Link aplkasi : https://app-pacilmart-pbp.adaptable.app/main/
 - lakukan migrasi dengan perintah python manage.py makemigrations kemudian perintah ini python manage.py migrate
 - buka file views.py yang ada di main, lalu tambahkan perintah import (from django.shortcuts import render), agar bisa merender tampilan HTML sesuai dengan data yang diberikan
 - tambahkan fungsi show_main dalam file main
-- lalu pada file main.html lakukan update sesuai dengan tugas -->
-<!-- ROOTING URL -->
+- lalu pada file main.html lakukan update sesuai dengan tugas  
+<!-- ROUTING URL -->
 - Dalam folder main buka file urls.py kemudian diadalamnya isi dengan kode ini ;
     from django.urls import path
     from main.views import show_main
@@ -42,7 +42,7 @@ Link aplkasi : https://app-pacilmart-pbp.adaptable.app/main/
 - Sign in menggunakan akun githuh 
 - Kemudian pilih repo yang menampung proyek django disini nama reponya adalah Tugas2-PBP
 - Lalu, pilih python template kemudian pilih PostgreSQL
-- pilih versi dari python yang sesuai dengan yang ada di laptop dan pada bagian start command ketik (python manage.py migrate && gunicorn shopping_list.wsgi)
+- pilih versi dari python yang sesuai dengan yang ada di laptop dan pada bagian start command ketik (python manage.py migrate && gunicorn pacil_mart.wsgi)
 - Masukkan nama app sesuai keinginan
 - Centang bagian HTTP Listener on PORT dan tekan depoly app dan tunggu samapai selesai.
 

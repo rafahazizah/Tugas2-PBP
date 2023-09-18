@@ -1,7 +1,46 @@
-<h1 style="background-color: rgb(196, 108, 58); text-transform: uppercase;"><center>Pacil Mart List Page</center></h1>
-<h3>Nama Aplikasi : </h3>
-<p>{{ nama_aplikasi }}</p> 
-<h3>Nama: </h3>
-<p>{{ name }}</p> 
-<h3>Kelas: </h3>
-<p>{{ kelas }}</p>
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 style="background-color: rgb(191, 197, 222); text-transform: uppercase;"><center>Pacil Mart List Page</center></h1>
+    
+    <h3>Nama Aplikasi : </h3>
+    <p>{{ nama_aplikasi }}</p>
+
+    <h3>Nama: </h3>
+    <p>{{ name }}</p> 
+
+    <h3>Kelas: </h3>
+    <p>{{ kelas }}</p>
+    <p>           </p>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Amount</th>
+        <!-- <th>Price</th> -->
+        <th>Description</th>
+        <th>Date Added</th>
+    </tr>
+
+    {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
+
+    {% for item in items %}
+        <tr>
+            <td>{{item.name}}</td>
+            <td>{{item.amount}}</td>
+            <!-- <td>{{product.price}}</td> -->
+            <td>{{item.description}}</td>
+            <td>{{item.date_added}}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<br />
+
+<a href="{% url 'main:create_item' %}">
+    <button>
+        Add New Item
+    </button>
+</a>
+
+{% endblock content %}

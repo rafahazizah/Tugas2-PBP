@@ -91,3 +91,9 @@ Perbadaan dari tiga model tersebut adalah sebagai berikut;
         - MVT, View mengambil dari MOdel dan mengirimkannya ke Template untuk menampilkan ke tampilan untuk user.
         - MVVM, Perantara anatar View dan Model adalah ViewModel, data dari model diambil oleh ViewModel dan dihubungkan ke View dan diubah kedalam format yang sesuai dengan format View
 
+
+# TUGAS 3 #
+1. pa perbedaan antara form POST dan form GET dalam Django?
+2. Apa perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data?
+3. Mengapa JSON sering digunakan dalam pertukaran data antara aplikasi web modern?
+4. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).

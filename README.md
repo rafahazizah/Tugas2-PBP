@@ -151,7 +151,6 @@ XML,JSON,HTML merupakan format-format dalam mengirimkan data
     if form.is_valid() and request.method == "POST":
         form.save()
         return HttpResponseRedirect(reverse('main:show_main'))
-
     context = {'form': form}
     return render(request, "create_product.html", context)
 - Lalu pada fungsi def show_main tambahkan kode Product.objects.all() yang berfungsi untuk mengambil seleuruh objek yang ada pada database . Pada fungsi ini juga tambahkan 'products': products pada bagian context.

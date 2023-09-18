@@ -93,6 +93,7 @@ Perbadaan dari tiga model tersebut adalah sebagai berikut;
         - MVVM, Perantara anatar View dan Model adalah ViewModel, data dari model diambil oleh ViewModel dan dihubungkan ke View dan diubah kedalam format yang sesuai dengan format View
 
 
+
 # TUGAS 3 #
 1. Apa perbedaan antara form POST dan form GET dalam Django?
 Dalam Django ada yang namanya HTTP POST dan HTTP GET yang diaman dua hal tersebut mempunyai fungsi yang sama yaitu untuk mengirimmkan data dari HTML ke Django.
@@ -156,7 +157,45 @@ XML,JSON,HTML merupakan format-format dalam mengirimkan data
 - Lalu pada fungsi def show_main tambahkan kode Product.objects.all() yang berfungsi untuk mengambil seleuruh objek yang ada pada database . Pada fungsi ini juga tambahkan 'products': products pada bagian context.
 - tambahkan import (create_product) pada urls.py pada main dan juga tambahkan path url baru pada bagian urlpatterns
 - Buat file baru pada folder templates pada main dengan nama create_product.html 
-- Pada main.html tambahkan kode block content dengan fungsi menampilkan produk dengan bentuk table dan tombol 
+- Pada main.html tambahkan kode block content dengan fungsi menampilkan produk dengan bentuk table dan tombol
+ # format HTML, XML, JSON #
+ - Pada views.py pada folder main tambahkan import 
+    from django.http import HttpResponse
+    from django.core import serializers
+- Kemudian membuat fungsi show_xml dan fungsi show_json seperti dibawah ini 
+    def show_xml(request):
+    data = Product.objects.all()
+    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+
+    def show_json(request):
+    data = Product.objects.all()
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+- kemudian tambahkan import show_xml dan show_json pada urls.py pada folder main .
+- terakhir tambahkan path url (XML, path('xml/', show_xml, name='show_xml'),JSON, path('json/', show_json name='show_json'),) pada bagian urlpatterns.
+# XML by ID, dan JSON by ID #
+- buat fungsi baru untuk xml dan json
+    - XML
+        def show_xml_by_id(request, id):
+        data = Product.objects.filter(pk=id)
+        return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+    - JSON
+        def show_json_by_id(request, id):
+        data = Product.objects.filter(pk=id)
+        return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+- Tambakan perintah import show_xml_by_id, show_json_by_id pada urls.py pada main
+- dan yang terakhir tambahkan kode path baru (path('xml/<int:id>/', show_xml_by_id, name='show_xml_by_id'),
+path('json/<int:id>/', show_json_by_id, name='show_json_by_id'), )pada bagian urlpatterns 
+
+# ROUTING #
+- Dalam routing XML dan json routing dapat dilakukan dengan cara berikut yaitu dengan menambahkan path url pada bagian urlpatterns seperti ini 
+    - XML, path('xml/', show_xml, name='show_xml'),
+    - JSON, path('json/', show_json, name='show_json'), 
+- Dalam routing XML ID dan JSON ID routing dapat dilakuan dengan cara berikut yaitu  dengan manambahkan path url pada bagian urlpatterns seperti ini;
+    - XML, 
+    path('xml/<int:id>/', show_xml_by_id, name='show_xml_by_id'),
+    - JSON
+    path('json/<int:id>/', show_json_by_id, name='show_json_by_id'), 
+
 
 5. Screenshot Hasil URL Postman
     Link Screenshot : ristek.link/Screenshot-URL-PBP

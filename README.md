@@ -18,12 +18,10 @@ Link aplikasi : https://app-pacilmart-pbp.adaptable.app/main/
 - buka models.py dalam folder main
 - isi file models.py dengan ;
     from django.db import models
-    class Product(models.Model):
+    class item(models.Model):
         name = models.CharField(max_length=255)
         date_added = models.DateField(auto_now_add=True)
-        Category = models.TextField()
         amount = models.IntegerField()
-        price = models.IntegerField()
         description = models.TextField()
 - lakukan migrasi dengan perintah python manage.py makemigrations kemudian perintah ini python manage.py migrate
 - buka file views.py yang ada di main, lalu tambahkan perintah import (from django.shortcuts import render), agar bisa merender tampilan HTML sesuai dengan data yang diberikan
@@ -97,7 +95,7 @@ Perbadaan dari tiga model tersebut adalah sebagai berikut;
 # TUGAS 3 #
 1. Apa perbedaan antara form POST dan form GET dalam Django?
 Dalam Django ada yang namanya HTTP POST dan HTTP GET yang diaman dua hal tersebut mempunyai fungsi yang sama yaitu untuk mengirimmkan data dari HTML ke Django.
-# PERBEDAAN
+# Perbedaan
 - Tujuan Utama
     - POST, Untuk mengirimkan data yang bersifat sensitif, pada umumnya POST digunakan untuk mengirim data seperti kata sandi, formulir, dan permintaan untuk upgrade, menghapus sumder daya server.
     - GET, Berfungsi untuk mengambil data dari server tanpa melakukan perubahan pada sumber, biasanya digunakan untuk mengambil data dari server tanpa mengubah datanya. 
@@ -134,40 +132,41 @@ XML,JSON,HTML merupakan format-format dalam mengirimkan data
 - Membuat file baru dengan nama forms.py di dalam folder main
 - Masukkan kode ini ;
     from django.forms import ModelForm
-    from main.models import Product
-
-    class ProductForm(ModelForm):
+    from main.models import item
+    class itemForm(ModelForm):
         class Meta:
-            model = Product
+            model = item
             fields = ["name", "amount", "description"]
     sesuaikan bagian fields sesuai dengan models yang ada 
 - pada file views.py yang ada di folder main dan tambahkan beberapa import seprti ini ;
     - from django.http import HttpResponseRedirect
-    - from main.forms import ProductForm
+    - from main.forms import itemForm
     - from django.urls import reverse
-- Kemudian buat fungsi baru (create_product) pada views.py yang berfungsi untuk menerima request dari user.
-    def create_product(request):
-    form = ProductForm(request.POST or None)
+- Kemudian buat fungsi baru (create_item) pada views.py yang berfungsi untuk menerima request dari user.
+    def create_item(request):
+    form = itemForm(request.POST or None)
     if form.is_valid() and request.method == "POST":
         form.save()
         return HttpResponseRedirect(reverse('main:show_main'))
     context = {'form': form}
-    return render(request, "create_product.html", context)
-- Lalu pada fungsi def show_main tambahkan kode Product.objects.all() yang berfungsi untuk mengambil seleuruh objek yang ada pada database . Pada fungsi ini juga tambahkan 'products': products pada bagian context.
-- tambahkan import (create_product) pada urls.py pada main dan juga tambahkan path url baru pada bagian urlpatterns
-- Buat file baru pada folder templates pada main dengan nama create_product.html 
+    return render(request, "create_item.html", context)
+- Lalu pada fungsi def show_main tambahkan kode item.objects.all() yang berfungsi untuk mengambil seleuruh objek yang ada pada database . Pada fungsi ini juga tambahkan 'items': items pada bagian context.
+- tambahkan import (create_item) pada urls.py pada main dan juga tambahkan path url baru pada bagian urlpatterns
+- Buat file baru pada folder templates pada main dengan nama create_item.html 
 - Pada main.html tambahkan kode block content dengan fungsi menampilkan produk dengan bentuk table dan tombol
  # format HTML, XML, JSON #
  - Pada views.py pada folder main tambahkan import 
     from django.http import HttpResponse
     from django.core import serializers
 - Kemudian membuat fungsi show_xml dan fungsi show_json seperti dibawah ini 
+    - XML
     def show_xml(request):
-    data = Product.objects.all()
+    data = item.objects.all()
     return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
 
+    - JSON
     def show_json(request):
-    data = Product.objects.all()
+    data = item.objects.all()
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 - kemudian tambahkan import show_xml dan show_json pada urls.py pada folder main .
 - terakhir tambahkan path url (XML, path('xml/', show_xml, name='show_xml'),JSON, path('json/', show_json name='show_json'),) pada bagian urlpatterns.
@@ -175,11 +174,11 @@ XML,JSON,HTML merupakan format-format dalam mengirimkan data
 - buat fungsi baru untuk xml dan json
     - XML
         def show_xml_by_id(request, id):
-        data = Product.objects.filter(pk=id)
+        data = item.objects.filter(pk=id)
         return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
     - JSON
         def show_json_by_id(request, id):
-        data = Product.objects.filter(pk=id)
+        data = item.objects.filter(pk=id)
         return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 - Tambakan perintah import show_xml_by_id, show_json_by_id pada urls.py pada main
 - dan yang terakhir tambahkan kode path baru (path('xml/<int:id>/', show_xml_by_id, name='show_xml_by_id'),

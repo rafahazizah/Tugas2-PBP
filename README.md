@@ -350,7 +350,7 @@ if form.is_valid() and request.method == "POST":
 - dan pada fungsi show_main ganti menjadi seperti ini 
 ```python
 def show_main(request):
-    products = Product.objects.filter(user=request.user)
+    item = Iteam.objects.filter(user=request.user)
 
     context = {
         'name': request.user.username,

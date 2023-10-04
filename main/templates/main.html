@@ -1,36 +1,91 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1 style="background-color: rgb(191, 197, 222); text-transform: uppercase;"><center>Pacil Mart List Page</center></h1>
-    
-    <h3>Nama Aplikasi : </h3>
-    <p>{{ nama_aplikasi }}</p>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid" style="background-color: rgb(84, 82, 82);">
+        <a class="navbar-brand" href="#" style="color: aliceblue; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Pacil Mart</a>
+        <button style="color: aliceblue;" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#" style="color: aliceblue;">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" style="color: aliceblue;">Link</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" style="color: aliceblue;" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" aria-disabled="true" style="color: aliceblue;">Disabled</a>
+                </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
 
-    <h3>Nama: </h3>
-    <p>{{ name }}</p> 
+<h1 style="background-color: rgb(171, 172, 177); text-transform: uppercase; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; padding: 10px;">Pacil Mart Inventory</h1>
 
-    <h3>Kelas: </h3>
-    <p>{{ kelas }}</p>
-    <p>           </p>
+<h3 style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: brown;">Nama:</h3>
+<p>{{ name }}</p>
 
-<table>
+<h3 style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: brown;">Kelas:</h3>
+<p>{{ kelas }}</p>
+
+<table style="border-collapse: collapse; width: 100%; margin-top: 20px;">
     <tr>
-        <th>Name</th>
+        <th style="font-family: Verdana, Geneva, Tahoma, sans-serif;">Name</th>
         <th>Amount</th>
-        <!-- <th>Price</th> -->
         <th>Description</th>
         <th>Date Added</th>
+        <th>Actions</th>
     </tr>
 
     {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
 
     {% for item in items %}
-        <tr>
-            <td>{{item.name}}</td>
-            <td>{{item.amount}}</td>
-            <!-- <td>{{product.price}}</td> -->
-            <td>{{item.description}}</td>
-            <td>{{item.date_added}}</td>
+        <tr {% if forloop.last %}style="background-color: rgb(215, 216, 216)"{% endif %}>
+            <td>{{ item.name }}</td>
+            <td>{{ item.amount }}</td>
+            <td>{{ item.description }}</td>
+            <td>{{ item.date_added }}</td>
+            <td>
+                <a href="{% url 'main:tambah_item' item.pk %}" style="text-decoration: none;">
+                    <button style="background-color: rgba(103, 102, 102); color: rgb(255, 255, 255); border: none; padding: 2px 2px; border-radius: 7px; cursor: pointer; margin-right: 5px;">
+                        +
+                    </button>
+                    <span>{{ item.amount }}</span>
+                </a>
+                <a href="{% url 'main:kurang_item' item.pk %}" style="text-decoration: none;">
+                    <button style="background-color: rgb(103, 102, 102); color: rgb(255, 255, 255); border: none; padding: 2px 4px; border-radius: 7px; cursor: pointer; margin-right: 5px;">
+                        -
+                    </button>
+                </a>
+                <a href="{% url 'main:edit_item' item.pk %}" style="text-decoration: none;">
+                    <button style="background-color: rgb(0, 0, 0); color: aliceblue; border: none; padding: 5px 7px; border-radius: 7px; cursor: pointer;">
+                        Edit
+                    </button>
+                </a>
+                <a href="{% url 'main:delete_item' item.pk %}" style="text-decoration: none;">
+                    <button style="background-color: rgb(255, 2, 2); color: aliceblue; border: none; padding: 5px 7px; border-radius: 7px; cursor: pointer;">
+                        Delete
+                    </button>
+                </a>
+            </td>
         </tr>
     {% endfor %}
 </table>
@@ -38,13 +93,15 @@
 <br />
 
 <a href="{% url 'main:create_item' %}">
-    <button>
+    <button style="background-color: rgb(0, 0, 0); color: aliceblue; border: none; padding: 10px 20px; border-radius: 7px; cursor: pointer; display: block; margin: 0 auto; ">
         Add New Item
     </button>
 </a>
-<h5>Sesi terakhir login: {{ last_login }}</h5>
-<a href="{% url 'main:logout' %}">
-    <button>
+
+<h5 style="color: rgba(255, 0, 0, 0.54); text-align: center;">Sesi terakhir login: {{ last_login }}</h5>
+
+<a href="{% url 'main:logout' %}" style="text-decoration: none;">
+    <button style="background-color: black; color: aliceblue; border: none; padding: 10px 20px; border-radius: 7px; cursor: pointer; display: block; margin: 0 auto;">
         Logout
     </button>
 </a>

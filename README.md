@@ -394,4 +394,190 @@ def logout_user(request):
 ...
 ```
 
+# TUGAS 5
+### Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya.
+###### Tag Selector
+    berguna untuk memilih semua elemen dengan tag yang sama dan untuk memberikan gaya secara umum pada elemen-elemen dengan tag tertentu.
+    Digunakan disaat akan mengaplikasikan style yang sama ke elemen yang banyak dengan tag yang sama seperti mengatur style teks pada paragraf '<p>'
+###### Class Selector
+    Berguna untuk memilih elemen berdasarkan kelas yang ada pada elemen tersebut, selector ini memberikan fleksibilitas dalam pengaturan gayanya
+    Digunakan saat ingin memberikan style yang khusus kepada pada elemen yang mempunyai class tertentu, seperti mengubah warna teks dengan class "highlight"
+###### Id Selector
+    berguna untuk memilih elemen berdasarkan ID uniknya dan mengaplikasikan gaya pada satu elemen tertentu.
+    Digunakan saat ngin memberikan gaya khusus pada satu elemen tertentu dalam halaman, seperti mengatur warna latar belakang header dengan ID "header".
+###### Attribute Selector ('*')
+    Berguna untuk memilih elemen berdasarkan nilai atribut tertentu yang dimiliki oleh elemen tersebut.
+    Digunakan saat ingin memilih elemen dengan atribut khusus, misalnya memilih semua tautan <a> dengan atribut target="_blank"
+###### Universal Selector
+    Berguna untuk mengatur gaya global atau mereset gaya pada semua elemen.
+    Digunakan saat ingin mengatur gaya dasar pada semua elemen, seperti menghapus margin dan padding bawaan.
+###### Pseudo Selector
+    Berguna untuk  memilih elemen berdasarkan keadaan atau karakteristik tertentu yang tidak dapat diwakili oleh selector lainnya. Ini memungkinkan Anda membuat efek dan gaya yang dinamis.
+    Digunakan saat ngin mengaplikasikan gaya atau efek berdasarkan keadaan elemen, seperti mengubah tampilan tombol saat digerakkan mouse (:hover) atau memilih elemen setiap beberapa elemen (:nth-child(odd)).
 
+
+### Jelaskan HTML5 Tag yang kamu ketahui.
+HTML5 adalah versi terbaru dari HTML yang diresmikan oleh W3C pada tahun 2014. Adapun beberapa teg yang HTML5 sediakan antara lain;
+- <header>, berguna untuk menjelaskan bagian paling atas halaman yang biasanya berisi logo, Judul, dan lain-lain
+- <footer>, berguna untuk mendifinisikan bagian bawah dari sebuah halaman pada web yang biasanya berisi info kontak,sosial mesia, ataupun hak cipta.
+- <nav>, untuk menandai navigasi dalam halaman web yang biasanya berisi tautan menu
+- <main>, Berisi konten utama dari web, dalam satu halaman hanya boleh 1 elemen <main> saja
+- <Video>, berguna untuk memasukkan sebuah video didalam web 
+- <form>, untuk membuat formulir untuk dikirimkan ke server , berisi input, tombol, dan action yang akan dilakukan oleh user
+- <input>, berguna untuk membuat elemen input/masukkan seperti tombol,kotak teks,dan lain-lain
+
+
+### Jelaskan perbedaan antara margin dan padding.
+##### Margin 
+Merupakan suatu area yang berada di sekeliling elemen dan terletak di luar batas elemen itu sendiri yang berfungsi untuk mengatur jarak antara elemen tersebut dengan elemen-elemen lain yang ada di sekitarnya.
+###### Perbedaan
+- Area yang berada disekitar HTML dan diluar batas elemen
+- Menagtur jarak diantara elemen dengan elemen lain disekitarnya
+- Pada margin tidak mempunyai warna atau latar belakang
+##### Padding
+Merupakan area yang mengelilingi konten elemen dan berada di dalam batas elemen itu sendiri yang berfungsi adalah untuk mengatur jarak antara konten elemen dan batas elemen tersebut.
+###### Perbedaan 
+- Padding berada di dalam batas elemen HTML, diantara konten elemen dan batas elemen.
+- Mengatur jarak diantara konten dan juga batas elemen.
+- Pada padding mempunyai warna atau latar belakang wrna.
+
+
+### Jelaskan perbedaan antara framework CSS Tailwind dan Bootstrap. Kapan sebaiknya kita menggunakan Bootstrap daripada Tailwind, dan sebaliknya?
+##### Bootstrap
+Framework CSS yang dari sananya sudah mempunyai komponen dan gaya yang sudah disiapkan dan siap untuk langsung digunakan. 
+##### Tailwind CSS
+Framework yang berfokus pada utility yang dimana kita menambahkan , membangun tampilannya dengan menggabungkan kelas-kelas utilitas di dalam HTML.
+###### Waktu Kegunaan
+Penggunanan dari Bootstrap sebaiknya digunakan ketika kita ingin membuat sebuah web dengan cepat dan instan tanpa harus merancang atau mendesain tampilannya dari awal.
+Sedangkan Tailwind CSS digunakan apabila kita ingin membuat web yang ingin mempunyai rancangan yang lebih kompleks dan khusus.
+
+
+### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+#### Menambahkan Bootstrap 
+- Pada base.html yang ada pada pacil_mart tambhakan kode meta 
+```python
+<head>
+    {% block meta %}
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% endblock meta %}
+</head>
+```
+- Kemudian pada blok tersebut jga tambahkan bootstrap CSS dan JS
+###### CSS
+```python
+<head>
+    {% block meta %}
+        ...
+    {% endblock meta %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+```
+###### JS
+```python
+<head>
+    ...
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+J4jsl5c9zdLKaUk5Ae5f5b1bw6AUn5f5v8FZJoMxm6f5cH1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+</head>
+```
+
+#### Tambahkan Navbar
+- pada main.html tambhaknkode yang ada pada web bootstrp yang berfungsi untuk menampilkan nama, tombol logout pada navbarnya
+
+#### Menambahkan Edit dan Delete pada Aplikasi
+- Pada Views.py yang ada pada main buat fungsi baru dengan nama edit_item dan delete_item
+###### Edit
+```python
+def edit_item(request, id):
+    # Get item berdasarkan ID
+    item = item.objects.get(pk = id)
+
+    # Set item sebagai instance dari form
+    form = itemForm(request.POST or None, instance=item)
+
+    if form.is_valid() and request.method == "POST":
+        # Simpan form dan kembali ke halaman awal
+        form.save()
+        return HttpResponseRedirect(reverse('main:show_main'))
+
+    context = {'form': form}
+    return render(request, "edit_item.html", context)
+```
+###### Delete
+```python
+def delete_item(request, id):
+    # Get data berdasarkan ID
+    item = Item.objects.get(pk = id)
+    # Hapus data
+    item.delete()
+    # Kembali ke halaman awal
+    return HttpResponseRedirect(reverse('main:show_main'))
+```
+- Kemudian buat file baru pada folder templates pada main yaitu edit_item.html
+###### edit_item.html
+```python
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div style="background-color: rgb(171, 172, 177); text-transform: uppercase; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; padding: 10px;">
+    <h1>Edit Item</h1>
+</div>
+
+<div style="background-color: rgb(192, 185, 185); padding: 20px; border-radius: 20px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); text-align: center;">
+    <form method="POST">
+        {% csrf_token %}
+        <table style="margin: 0 auto;">
+            {{ form.as_table }}
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Edit Item" style="background-color: rgb(63, 57, 178); color: aliceblue; border: none; padding: 10px 20px; border-radius: 7px; cursor: pointer;">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+{% endblock %}
+
+```
+- tambahkan fungsi import pada urls.py
+###### edit_item
+```python
+from main.views import edit_item
+```
+###### delete_item
+```pyhton
+from main.views import delete_item
+```
+- Tambahkan path edit dan delete pada bagian urlpatterns 
+###### edit_item
+```python
+path('edit-item/<int:id>', edit_item,name='edit_item'),
+```
+###### delete_item
+```python
+path('delete/<int:id>', delete_item,name='delete_item'), 
+```
+- Setelah itu untuk tambhakan kode seperti ini pada main.html, yang berguna untuk memunculkan button edit dan deletenya
+```python
+
+<tr>
+    ...
+    <td>
+        <a href="{% url 'main:edit_product' product.pk %}">
+            <button>
+                Edit
+            </button>
+        </a>
+        <a href="{% url 'main:delete_product' product.pk %}">
+              <button>
+                  Delete
+              </button>
+          </a>
+    </td>
+</tr>
+...
+```

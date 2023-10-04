@@ -4,31 +4,83 @@
     <title>Register</title>
 {% endblock meta %}
 
-{% block content %}  
+{% block content %}
+<style>
+    /* Ganti warna latar belakang menjadi biru muda */
+    body {
+        background-color: rgb(92, 86, 86);
+        display: flex;
+        justify-content: center; /* Pusatkan konten horizontal */
+        align-items: center; /* Pusatkan konten vertikal */
+        height: 100vh; /* Sesuaikan tinggi ke viewport */
+        margin: 0; /* Hapus margin halaman */
+    }
 
-<div class = "login">
-    
-    <h1>Register</h1>  
+    /* Gaya lainnya sesuai kebutuhan Anda */
+    .login {
+        background-color: rgb(192, 185, 185);
+        padding: 50px;
+        border-radius: 100px;
+    }
 
-        <form method="POST" >  
-            {% csrf_token %}  
-            <table>  
-                {{ form.as_table }}  
-                <tr>  
-                    <td></td>
-                    <td><input type="submit" name="submit" value="Daftar"/></td>  
-                </tr>  
-            </table>  
-        </form>
+    /* Atur tampilan form input dan tombol */
+    form table {
+        margin: 0 auto;
+    }
 
-    {% if messages %}  
-        <ul>   
-            {% for message in messages %}  
-                <li>{{ message }}</li>  
-                {% endfor %}  
-        </ul>   
+    form table tr td {
+        padding: 4px;
+        text-align: left;
+        font-weight: bold;
+    }
+
+    form table tr td input[type="text"],
+    form table tr td input[type="password"] {
+        width: 90%;
+        padding: 4px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        text-align: left; /* Tambahkan ini untuk mengatur tampilan rata kanan */
+    }
+
+    form table tr td input[type="submit"] {
+        background-color: rgb(0, 0, 0);
+        color: aliceblue;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 7px;
+        cursor: pointer;
+    }
+
+    /* Stil pesan kesalahan */
+    ul {
+        list-style: none;
+        padding: 0;
+        color: red;
+    }
+</style>
+
+<div class="login">
+    <h1 style="color: rgb(49, 46, 51); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Register</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+            <tr>
+                <td></td>
+                <td><input type="submit" name="submit" value="Daftar" /></td>
+            </tr>
+        </table>
+    </form>
+
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
     {% endif %}
-
-</div>  
+</div>
 
 {% endblock content %}

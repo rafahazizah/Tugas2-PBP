@@ -396,35 +396,35 @@ def logout_user(request):
 
 # TUGAS 5
 ### Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya.
-###### Tag Selector
-    berguna untuk memilih semua elemen dengan tag yang sama dan untuk memberikan gaya secara umum pada elemen-elemen dengan tag tertentu.
-    Digunakan disaat akan mengaplikasikan style yang sama ke elemen yang banyak dengan tag yang sama seperti mengatur style teks pada paragraf '<p>'
-###### Class Selector
-    Berguna untuk memilih elemen berdasarkan kelas yang ada pada elemen tersebut, selector ini memberikan fleksibilitas dalam pengaturan gayanya
-    Digunakan saat ingin memberikan style yang khusus kepada pada elemen yang mempunyai class tertentu, seperti mengubah warna teks dengan class "highlight"
-###### Id Selector
-    berguna untuk memilih elemen berdasarkan ID uniknya dan mengaplikasikan gaya pada satu elemen tertentu.
-    Digunakan saat ngin memberikan gaya khusus pada satu elemen tertentu dalam halaman, seperti mengatur warna latar belakang header dengan ID "header".
-###### Attribute Selector ('*')
-    Berguna untuk memilih elemen berdasarkan nilai atribut tertentu yang dimiliki oleh elemen tersebut.
-    Digunakan saat ingin memilih elemen dengan atribut khusus, misalnya memilih semua tautan <a> dengan atribut target="_blank"
-###### Universal Selector
-    Berguna untuk mengatur gaya global atau mereset gaya pada semua elemen.
-    Digunakan saat ingin mengatur gaya dasar pada semua elemen, seperti menghapus margin dan padding bawaan.
-###### Pseudo Selector
-    Berguna untuk  memilih elemen berdasarkan keadaan atau karakteristik tertentu yang tidak dapat diwakili oleh selector lainnya. Ini memungkinkan Anda membuat efek dan gaya yang dinamis.
-    Digunakan saat ngin mengaplikasikan gaya atau efek berdasarkan keadaan elemen, seperti mengubah tampilan tombol saat digerakkan mouse (:hover) atau memilih elemen setiap beberapa elemen (:nth-child(odd)).
+##### Tag Selector
+berguna untuk memilih semua elemen dengan tag yang sama dan untuk memberikan gaya secara umum pada elemen-elemen dengan tag tertentu.
+Digunakan disaat akan mengaplikasikan style yang sama ke elemen yang banyak dengan tag yang sama seperti mengatur style teks pada paragraf '<p>'
+##### Class Selector
+Berguna untuk memilih elemen berdasarkan kelas yang ada pada elemen tersebut, selector ini memberikan fleksibilitas dalam pengaturan gayanya
+Digunakan saat ingin memberikan style yang khusus kepada pada elemen yang mempunyai class tertentu, seperti mengubah warna teks dengan class "highlight"
+##### Id Selector
+berguna untuk memilih elemen berdasarkan ID uniknya dan mengaplikasikan gaya pada satu elemen tertentu.
+Digunakan saat ngin memberikan gaya khusus pada satu elemen tertentu dalam halaman, seperti mengatur warna latar belakang header dengan ID "header".
+##### Attribute Selector ('*')
+Berguna untuk memilih elemen berdasarkan nilai atribut tertentu yang dimiliki oleh elemen tersebut.
+Digunakan saat ingin memilih elemen dengan atribut khusus, misalnya memilih semua tautan <a> dengan atribut target="_blank"
+##### Universal Selector
+Berguna untuk mengatur gaya global atau mereset gaya pada semua elemen.
+Digunakan saat ingin mengatur gaya dasar pada semua elemen, seperti menghapus margin dan padding bawaan.
+##### Pseudo Selector
+Berguna untuk  memilih elemen berdasarkan keadaan atau karakteristik tertentu yang tidak dapat diwakili oleh selector lainnya. Ini memungkinkan Anda membuat efek dan gaya yang dinamis.
+Digunakan saat ngin mengaplikasikan gaya atau efek berdasarkan keadaan elemen, seperti mengubah tampilan tombol saat digerakkan mouse (:hover) atau memilih elemen setiap beberapa elemen (:nth-child(odd)).
 
 
 ### Jelaskan HTML5 Tag yang kamu ketahui.
 HTML5 adalah versi terbaru dari HTML yang diresmikan oleh W3C pada tahun 2014. Adapun beberapa teg yang HTML5 sediakan antara lain;
-- <header>, berguna untuk menjelaskan bagian paling atas halaman yang biasanya berisi logo, Judul, dan lain-lain
-- <footer>, berguna untuk mendifinisikan bagian bawah dari sebuah halaman pada web yang biasanya berisi info kontak,sosial mesia, ataupun hak cipta.
-- <nav>, untuk menandai navigasi dalam halaman web yang biasanya berisi tautan menu
-- <main>, Berisi konten utama dari web, dalam satu halaman hanya boleh 1 elemen <main> saja
-- <Video>, berguna untuk memasukkan sebuah video didalam web 
-- <form>, untuk membuat formulir untuk dikirimkan ke server , berisi input, tombol, dan action yang akan dilakukan oleh user
-- <input>, berguna untuk membuat elemen input/masukkan seperti tombol,kotak teks,dan lain-lain
+- header, berguna untuk menjelaskan bagian paling atas halaman yang biasanya berisi logo, Judul, dan lain-lain
+- footer, berguna untuk mendifinisikan bagian bawah dari sebuah halaman pada web yang biasanya berisi info kontak,sosial mesia, ataupun hak cipta.
+- nav, untuk menandai navigasi dalam halaman web yang biasanya berisi tautan menu
+- main, Berisi konten utama dari web, dalam satu halaman hanya boleh 1 elemen main saja
+- Video, berguna untuk memasukkan sebuah video didalam web 
+- form, untuk membuat formulir untuk dikirimkan ke server , berisi input, tombol, dan action yang akan dilakukan oleh user
+- input, berguna untuk membuat elemen input/masukkan seperti tombol,kotak teks,dan lain-lain
 
 
 ### Jelaskan perbedaan antara margin dan padding.

@@ -585,9 +585,9 @@ path('delete/<int:id>', delete_item,name='delete_item'),
 # TUGAS 6
 ### Jelaskan perbedaan antara asynchronous programming dengan synchronous programming.
 ##### Synchronous Programming:
-    Dalam pemrograman sinkron, kode berjalan langkah demi langkah. Jadi, satu tugas harus selesai dulu sebelum tugas selanjutnya bisa mulai. Jika ada tugas yang memakan waktu lama, seperti membuka file besar, tugas-tugas lainnya harus menunggu sampai tugas tersebut selesai.
+Dalam pemrograman sinkron, kode berjalan langkah demi langkah. Jadi, satu tugas harus selesai dulu sebelum tugas selanjutnya bisa mulai. Jika ada tugas yang memakan waktu lama, seperti membuka file besar, tugas-tugas lainnya harus menunggu sampai tugas tersebut selesai.
 ###### Asynchronous Programming:
-    Dalam pemrograman asinkron, tugas bisa berjalan di belakang tanpa menghentikan tugas lainnya. Ketika tugas itu selesai, ia akan menginformasikan program dengan cara tertentu, seperti callback atau promise. Ini membuat program bisa tetap bekerja cepat meskipun ada tugas yang butuh waktu lama.
+Dalam pemrograman asinkron, tugas bisa berjalan di belakang tanpa menghentikan tugas lainnya. Ketika tugas itu selesai, ia akan menginformasikan program dengan cara tertentu, seperti callback atau promise. Ini membuat program bisa tetap bekerja cepat meskipun ada tugas yang butuh waktu lama.
 
 ### Dalam penerapan JavaScript dan AJAX, terdapat penerapan paradigma event-driven programming. Jelaskan maksud dari paradigma tersebut dan sebutkan salah satu contoh penerapannya pada tugas ini
 - Event-driven programming merupakan cara pemrograman di mana jalannya program bergantung pada kejadian, seperti ketika pengguna mengklik sesuatu, menekan tombol keyboard, atau menerima data dari tempat lain. Contohnya dalam JavaScript, hampir semua interaksi di antarmuka pengguna web berdasarkan pendekatan ini, seperti kode yang bereaksi saat pengguna mengklik tombol.

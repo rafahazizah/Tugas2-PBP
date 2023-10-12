@@ -567,12 +567,12 @@ path('delete/<int:id>', delete_item,name='delete_item'),
 <tr>
     ...
     <td>
-        <a href="{% url 'main:edit_product' product.pk %}">
+        <a href="{% url 'main:edit_item' item.pk %}">
             <button>
                 Edit
             </button>
         </a>
-        <a href="{% url 'main:delete_product' product.pk %}">
+        <a href="{% url 'main:delete_item' item.pk %}">
               <button>
                   Delete
               </button>
@@ -586,7 +586,7 @@ path('delete/<int:id>', delete_item,name='delete_item'),
 ### Jelaskan perbedaan antara asynchronous programming dengan synchronous programming.
 ##### Synchronous Programming:
     Dalam pemrograman sinkron, kode berjalan langkah demi langkah. Jadi, satu tugas harus selesai dulu sebelum tugas selanjutnya bisa mulai. Jika ada tugas yang memakan waktu lama, seperti membuka file besar, tugas-tugas lainnya harus menunggu sampai tugas tersebut selesai.
-##### Asynchronous Programming:
+###### Asynchronous Programming:
     Dalam pemrograman asinkron, tugas bisa berjalan di belakang tanpa menghentikan tugas lainnya. Ketika tugas itu selesai, ia akan menginformasikan program dengan cara tertentu, seperti callback atau promise. Ini membuat program bisa tetap bekerja cepat meskipun ada tugas yang butuh waktu lama.
 
 ### Dalam penerapan JavaScript dan AJAX, terdapat penerapan paradigma event-driven programming. Jelaskan maksud dari paradigma tersebut dan sebutkan salah satu contoh penerapannya pada tugas ini
@@ -614,3 +614,163 @@ Pendapat saya mengenai kedua teknologi tersebut adalah menurut saya Kedua teknol
 
 ### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 
+#### Buat Fungsi untuk JSON
+- Pada views.py buat fungsi baru dengan nama get_item_json
+```python
+def get_item_json(request):
+    Item_item = item.objects.all()
+    return HttpResponse(serializers.serialize('json', Item_item))
+```
+#### Fungsi AJAX
+- Pada views.py buat fungsi dengan nama add_item_ajax 
+```python
+@csrf_exempt
+def add_item_ajax(request):
+if request.method == 'POST':
+    name = request.POST.get("name")
+    amount = request.POST.get("amount")
+    description = request.POST.get("description")
+    user = request.user
+
+    new_item = item(name=name, amount=amount, description=description, user=user)
+    new_item.save()
+
+    return HttpResponse(b"CREATED", status=201)
+
+return HttpResponseNotFound()
+```
+- dan juga tambahkan fugsi impor
+```python
+from django.views.decorators.csrf import csrf_exempt 
+dan 
+from django.http import HttpResponseNotFound
+```
+#### Routing fungsi get_item_json dan add_item_ajax
+- Pada urls.py yang ada pada folder main tambahkan impor fungsi get_item_json add_item_ajax.
+- lalu tambahkan juga pda path url nya 
+```python
+...
+path('get-item/', get_item_json,name='get_item_json'),
+path('create-item-ajax/', add_item_ajax ,name='add_item_ajax')
+```
+#### Menampilkan data item (AJAX GET)
+- Pada main.html ubah kode nya menjadi seperti ini 
+```python
+<div id="Item_cards"></div>
+```
+- kemudian buat block Script yang didalamnya terdapat 
+```python
+<script>
+    async function getItems() {
+        return fetch("{% url 'main:get_item_json' %}").then((res) => res.json());
+    }
+</script>
+```
+- Lalu tambahkan fungsi baru pada block script dibawah getItems yang isinya seperti ini 
+```python
+<script>
+async function displayItemsAsCards() {
+    const items = await getItems();
+    let htmlString = '';
+
+items.forEach((item, index) => {
+    const itemId = item.id;
+    const isLastItem = index === items.length - 1; // Cek apakah item ini adalah item terakhir
+    const cardClass = isLastItem ? 'card last-item' : 'card'; // Tambahkan kelas 'last-item' jika ini adalah item terakhir
+    htmlString += `
+        <div class="${cardClass} mb-4">
+            <div class="card-inner" style="background-color: ${isLastItem ? 'aliceblue' : 'bold'}; border: none; border-radius: 10px; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);">
+                <div class="card-body">
+                    <h5 class="card-title" style="font-family: 'Verdana', sans-serif; color: ${isLastItem ? 'white' : '#ffffff'};">${item.fields.name}</h5>
+                    <p class="card-text"><strong>Amount:</strong> ${item.fields.amount}</p>
+                    <p class="card-text"><strong>Description:</strong> ${item.fields.description}</p>
+                    <p class="card-text"><strong>Date Added:</strong> ${item.fields.date_added}</p>
+                    <a href="tambah/${item.pk}" class="btn btn-secondary" style="margin-left: 3px;">+</a> ${item.fields.amount}
+                    <a href="kurang/${item.pk}"class="btn btn-secondary" style="margin-right: 3px;">-</a>
+                    <button data-id="${item.pk}" class="btn btn-danger btn-sm" onclick="deleteItem(this.getAttribute('data-id'))">Delete</button>
+                </div>
+            </div>
+        </div>
+    `;
+});
+    const cardContainer = document.querySelector(".card-container");
+    cardContainer.innerHTML = htmlString;
+    }
+    document.getElementById("button_add").onclick = addItem;
+    }
+    displayItemsAsCards();
+</script>
+```
+#### Pengimplementasin Bootstrap (AJAX POST)
+- Implementasika boostrap berikut 
+```python
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Product</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="form" onsubmit="return false;">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="name" class="col-form-label">Name:</label>
+                        <input type="text" class="form-control" id="name" name="name"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="amount" class="col-form-label">amount:</label>
+                        <input type="number" class="form-control" id="amount" name="amount"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="col-form-label">Description:</label>
+                        <textarea class="form-control" id="description" name="description"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Product</button>
+            </div>
+        </div>
+    </div>
+</div>
+```
+- Tambahkan button pada bagian paling bawah untuk menampilkan modalnya 
+```python
+<div class="text-center mt-3">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Add Item by AJAX
+    </button>
+</div>
+```
+#### Add item dengan AJAX
+- Buat fungsi baru di bawah block Script dengan nama addItem()
+```python
+function addItem() {
+    fetch("{% url 'main:add_item_ajax' %}", {
+        method: "POST",
+        body: new FormData(document.querySelector('#form'))
+    }).then(displayItemsAsCards);
+
+    document.getElementById("form").reset();
+    return false;
+}
+```
+- dan yang terakhir pada bagian paling bawah tambahka button add Item by AJAX untuk menjalankan fungsi addItemnya
+```python
+document.getElementById("button_add").onclick = addItem;
+```
+#### Perintah collectstatic
+- Pada settings.py tambahkan import OS
+```python
+import os
+```
+- Kemudian pada bagian static URL tambahkan kodenya dengan ini 
+```python
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'main/static'),
+]
+```

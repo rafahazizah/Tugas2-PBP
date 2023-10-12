@@ -5,10 +5,12 @@
 {% endblock meta %}
 
 {% block content %}
+{% load static %}
 <style>
     /* Ganti warna latar belakang menjadi biru muda */
     body {
-        background-color: rgb(92, 86, 86);
+        background-image: url("{% static 'tandatanya.png' %}");
+        background-size: cover;
         display: flex;
         justify-content: center; /* Pusatkan konten horizontal */
         align-items: center; /* Pusatkan konten vertikal */
@@ -18,7 +20,7 @@
 
     /* Gaya lainnya sesuai kebutuhan Anda */
     .login {
-        background-color: rgb(192, 185, 185);
+        background-color: rgba(255, 255, 255, 0.489);
         padding: 50px;
         border-radius: 100px;
     }

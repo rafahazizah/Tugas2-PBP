@@ -1,109 +1,312 @@
 {% extends 'base.html' %}
-
 {% block content %}
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid" style="background-color: rgb(84, 82, 82);">
-        <a class="navbar-brand" href="#" style="color: aliceblue; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Pacil Mart</a>
-        <button style="color: aliceblue;" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+{% load static %}
+<style>
+    body {
+        font-family: 'Verdana', sans-serif;
+        font-size: 16px;
+        background-image: url("{% static 'PBP6.png' %}");
+        background-size: cover; /* Untuk memastikan gambar latar belakang menutupi seluruh elemen body */
+        background-repeat: no-repeat; /* Menghindari pengulangan gambar latar belakang */
+        background-attachment: fixed;
+    }
+
+    .card-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+    }
+
+    .card {
+        margin-top: 55px;
+        background-color: rgba(97, 94, 94, 0.492);
+        color: #424242;
+        border-radius: 10px;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s, box-shadow 0.2s;
+        border-color: #ffffff;
+        display: flex;
+        justify-content: center; /* Untuk mengatur card-inner di tengah secara horizontal */
+        align-items: center; /* Untuk mengatur card-inner di tengah secara vertikal */
+        }
+
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-inner {
+        background-color: #bbbbbb; /* Warna latar belakang card-inner */
+        border-radius: 10px;
+        padding: 30px;
+        height: 90%;
+        width: 80%;
+    }
+
+    #Item_cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .card-title {
+        background-color: #333333;
+        color: #aea9a9;
+        border-radius: 10px;
+        width: auto;
+        padding: 10px;
+        font-family: 'Arial', sans-serif;
+    }
+
+    .main-content {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+
+    .page-title {
+    margin: 30px auto; /* Menengahkan elemen secara horizontal dan memberikan margin atas 30px */
+    text-align: center;
+    border-radius: 50px;
+    max-width: 75%;
+    background-color: rgb(171, 172, 177);
+    text-transform: uppercase;
+    padding: 10px;
+}
+
+
+    .profile-card {
+        max-width: 10%;
+        width: 100%;
+        margin: 0 auto;
+        padding: 10px;
+        border-radius: 90px;
+        background-color: #00000092;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-info {
+        flex: 1;
+        padding: 10px;
+    }
+
+    .profile-label {
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: rgb(255, 255, 255);
+    margin: 0;
+    text-align: center; /* Teks berada di tengah */
+    }
+
+    .profile-value {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        color: rgb(255, 255, 255);
+        margin: 0;
+        font-weight: bold;
+        text-align: center; /* Teks berada di tengah */
+    }
+
+
+    .session-info {
+        text-align: center;
+        background-color: rgb(255, 0, 0);
+        color: white;
+        padding: 10px;
+        border-radius: 30px;
+    }
+
+
+</style>
+
+
+
+<nav class="navbar navbar-expand-lg bg-dark">
+    <div class="container">
+        <div class="navbar-brand">
+            <div style="width: 130px; height: 130px; border-radius: 50%; border: 3px solid #ffffff; overflow: hidden;">
+                <img src="/static/PACIl MART.png" alt="Gambar Anda" style="max-width: 100%; max-height: 100%; object-fit: cover; cursor: pointer;">
+            </div>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#" style="color: aliceblue;">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" style="color: aliceblue;">Link</a>
+                    <a class="nav-link" href="#" style="color: aliceblue;">Products</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" style="color: aliceblue;" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown
+                        Categories
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li><a class="dropdown-item" href="#">Electronics</a></li>
+                        <li><a class="dropdown-item" href="#">Clothing</a></li>
+                        <li class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Others</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" aria-disabled="true" style="color: aliceblue;">Disabled</a>
+                    <a class="nav-link" href="#" style="color: aliceblue;">Contact</a>
+                </li>
+                <li class="nav-item"> <!-- Tambahkan elemen ini untuk mengisi ruang kosong di sebelah kanan -->
                 </li>
             </ul>
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+            </form>        
         </div>
     </div>
 </nav>
 
-<h1 style="background-color: rgb(171, 172, 177); text-transform: uppercase; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; padding: 10px;">Pacil Mart Inventory</h1>
 
-<h3 style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: brown;">Nama:</h3>
-<p>{{ name }}</p>
+<div class="main-content">
+    <h1 class="page-title">Pacil Mart Inventory.</h1>
+    <div class="profile-card">
+        <div class="profile-info">
+            <h5 class="profile-label">Nama:</h5>
+            <p class="profile-value">{{ name }}</p>
 
-<h3 style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: brown;">Kelas:</h3>
-<p>{{ kelas }}</p>
+            <h5 class="profile-label">Kelas:</h5>
+            <p class="profile-value">{{ kelas }}</p>
+        </div>
+    </div>
+</div>
 
-<table style="border-collapse: collapse; width: 100%; margin-top: 20px;">
-    <tr>
-        <th style="font-family: Verdana, Geneva, Tahoma, sans-serif;">Name</th>
-        <th>Amount</th>
-        <th>Description</th>
-        <th>Date Added</th>
-        <th>Actions</th>
-    </tr>
 
-    {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
+<div id="Item_cards" class="card-container">
+    <!-- Kartu-kartu akan ditampilkan di sini -->
+</div>
 
-    {% for item in items %}
-        <tr {% if forloop.last %}style="background-color: rgb(215, 216, 216)"{% endif %}>
-            <td>{{ item.name }}</td>
-            <td>{{ item.amount }}</td>
-            <td>{{ item.description }}</td>
-            <td>{{ item.date_added }}</td>
-            <td>
-                <a href="{% url 'main:tambah_item' item.pk %}" style="text-decoration: none;">
-                    <button style="background-color: rgba(103, 102, 102); color: rgb(255, 255, 255); border: none; padding: 2px 2px; border-radius: 7px; cursor: pointer; margin-right: 5px;">
-                        +
-                    </button>
-                    <span>{{ item.amount }}</span>
-                </a>
-                <a href="{% url 'main:kurang_item' item.pk %}" style="text-decoration: none;">
-                    <button style="background-color: rgb(103, 102, 102); color: rgb(255, 255, 255); border: none; padding: 2px 4px; border-radius: 7px; cursor: pointer; margin-right: 5px;">
-                        -
-                    </button>
-                </a>
-                <a href="{% url 'main:edit_item' item.pk %}" style="text-decoration: none;">
-                    <button style="background-color: rgb(0, 0, 0); color: aliceblue; border: none; padding: 5px 7px; border-radius: 7px; cursor: pointer;">
-                        Edit
-                    </button>
-                </a>
-                <a href="{% url 'main:delete_item' item.pk %}" style="text-decoration: none;">
-                    <button style="background-color: rgb(255, 2, 2); color: aliceblue; border: none; padding: 5px 7px; border-radius: 7px; cursor: pointer;">
-                        Delete
-                    </button>
-                </a>
-            </td>
-        </tr>
-    {% endfor %}
-</table>
 
-<br />
+<div id="Item_cards"></div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Product</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="form" onsubmit="return false;">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="name" class="col-form-label">Name:</label>
+                        <input type="text" class="form-control" id="name" name="name"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="amount" class="col-form-label">amount:</label>
+                        <input type="number" class="form-control" id="amount" name="amount"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="col-form-label">Description:</label>
+                        <textarea class="form-control" id="description" name="description"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Product</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-<a href="{% url 'main:create_item' %}">
-    <button style="background-color: rgb(0, 0, 0); color: aliceblue; border: none; padding: 10px 20px; border-radius: 7px; cursor: pointer; display: block; margin: 0 auto; ">
-        Add New Item
+<div class="session-info">
+    <h5>Sesi terakhir login: {{ last_login }}</h5>
+</div>
+
+
+<div style="width: 100%; margin-top: 20px;">
+    <script>
+        async function getItems() {
+            return fetch("{% url 'main:get_item_json' %}").then((res) => res.json());
+        }
+
+        async function displayItemsAsCards() {
+            const items = await getItems();
+            let htmlString = '';
+
+        items.forEach((item, index) => {
+            const itemId = item.id;
+            const isLastItem = index === items.length - 1; // Cek apakah item ini adalah item terakhir
+            const cardClass = isLastItem ? 'card last-item' : 'card'; // Tambahkan kelas 'last-item' jika ini adalah item terakhir
+            htmlString += `
+                <div class="${cardClass} mb-4">
+                    <div class="card-inner" style="background-color: ${isLastItem ? 'aliceblue' : 'bold'}; border: none; border-radius: 10px; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);">
+                        <div class="card-body">
+                            <h5 class="card-title" style="font-family: 'Verdana', sans-serif; color: ${isLastItem ? 'white' : '#ffffff'};">${item.fields.name}</h5>
+                            <p class="card-text"><strong>Amount:</strong> ${item.fields.amount}</p>
+                            <p class="card-text"><strong>Description:</strong> ${item.fields.description}</p>
+                            <p class="card-text"><strong>Date Added:</strong> ${item.fields.date_added}</p>
+                            <a href="tambah/${item.pk}" class="btn btn-secondary" style="margin-left: 3px;">+</a> ${item.fields.amount}
+                            <a href="kurang/${item.pk}"class="btn btn-secondary" style="margin-right: 3px;">-</a>
+                            <button data-id="${item.pk}" class="btn btn-danger btn-sm" onclick="deleteItem(this.getAttribute('data-id'))">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+
+        const cardContainer = document.querySelector(".card-container");
+        cardContainer.innerHTML = htmlString;
+        }
+
+        async function deleteItem(itemId) {
+            const deleteUrl =  `{% url 'main:delete_item_ajax' item_id=999 %}`.replace('999', itemId);
+            console.log(itemId);
+            try {
+                const response = await fetch(deleteUrl, {
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    }
+                }).then(displayItemsAsCards)
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+
+        function addItem() {
+            fetch("{% url 'main:add_item_ajax' %}", {
+                method: "POST",
+                body: new FormData(document.querySelector('#form'))
+            }).then(displayItemsAsCards);
+
+            document.getElementById("form").reset();
+            return false;
+        }
+
+        document.getElementById("button_add").onclick = addItem;
+
+        
+        displayItemsAsCards();
+    </script>
+</div>
+
+<!-- Tombol "Add Item by AJAX" di atas tombol Logout -->
+<div class="text-center mt-3">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Add Item by AJAX
     </button>
-</a>
+</div>
 
-<h5 style="color: rgba(255, 0, 0, 0.54); text-align: center;">Sesi terakhir login: {{ last_login }}</h5>
 
-<a href="{% url 'main:logout' %}" style="text-decoration: none;">
-    <button style="background-color: black; color: aliceblue; border: none; padding: 10px 20px; border-radius: 7px; cursor: pointer; display: block; margin: 0 auto;">
-        Logout
-    </button>
-</a>
+
+<div class="text-center">
+    <a href="{% url 'main:logout' %}">
+        <button style="background-color: rgb(255, 217, 0); color: rgb(0, 0, 0); border: none; padding: 10px 20px; border-radius: 7px; cursor: pointer; margin-top: 7px;">
+            Logout
+        </button>
+    </a>
+</div>
+
+
+
 
 {% endblock content %}

@@ -581,3 +581,36 @@ path('delete/<int:id>', delete_item,name='delete_item'),
 </tr>
 ...
 ```
+
+# TUGAS 6
+### Jelaskan perbedaan antara asynchronous programming dengan synchronous programming.
+##### Synchronous Programming:
+    Dalam pemrograman sinkron, kode berjalan langkah demi langkah. Jadi, satu tugas harus selesai dulu sebelum tugas selanjutnya bisa mulai. Jika ada tugas yang memakan waktu lama, seperti membuka file besar, tugas-tugas lainnya harus menunggu sampai tugas tersebut selesai.
+##### Asynchronous Programming:
+    Dalam pemrograman asinkron, tugas bisa berjalan di belakang tanpa menghentikan tugas lainnya. Ketika tugas itu selesai, ia akan menginformasikan program dengan cara tertentu, seperti callback atau promise. Ini membuat program bisa tetap bekerja cepat meskipun ada tugas yang butuh waktu lama.
+
+### Dalam penerapan JavaScript dan AJAX, terdapat penerapan paradigma event-driven programming. Jelaskan maksud dari paradigma tersebut dan sebutkan salah satu contoh penerapannya pada tugas ini
+- Event-driven programming merupakan cara pemrograman di mana jalannya program bergantung pada kejadian, seperti ketika pengguna mengklik sesuatu, menekan tombol keyboard, atau menerima data dari tempat lain. Contohnya dalam JavaScript, hampir semua interaksi di antarmuka pengguna web berdasarkan pendekatan ini, seperti kode yang bereaksi saat pengguna mengklik tombol.
+- Contoh Penerapan:
+    Dalam sebuah form pengisian data, saat user menekan tombol 'Simpan' pada form, akan terjadi suatu aksi 'click'. Fungsi yang berkaitan dengan aksi 'click' ini akan berjalan, seperti mengumpulkan data dari form dan mengirimnya ke server dengan AJAX.
+.
+### Jelaskan penerapan asynchronous programming pada AJAX.
+- AJAX membolehkan halaman web untuk mengambil informasi dari server tanpa perlu memuat ulang seluruh halaman.
+- Sifat "Asynchronous" dari AJAX artinya kita bisa kirim dan ambil data dari server tanpa mengubah tampilan halaman yang sedang kita lihat.
+- Misalnya, jika pengguna menekan tombol untuk ambil data, dengan AJAX data bisa diambil tanpa mengganggu halaman dan saat data sudah ada, halaman bisa diperbarui tanpa harus dimuat ulang.
+
+### Pada PBP kali ini, penerapan AJAX dilakukan dengan menggunakan Fetch API daripada library jQuery. Bandingkanlah kedua teknologi tersebut dan tuliskan pendapat kamu teknologi manakah yang lebih baik untuk digunakan.
+###### Fetch API:
+- Dibuat untuk browser terbaru dan tidak butuh tambahan perpustakaan.
+- Memakai Promise, yang membuatnya lebih mudah untuk handle tugas-tugas asinkron.
+- Mudah disesuaikan dan beberapa developer merasa sintaksnya lebih rapi.
+###### jQuery AJAX:
+- Termasuk dalam perpustakaan jQuery yang luas, jadi jika Anda hanya ingin AJAX, mungkin ada kode tambahan yang tidak Anda butuhkan.
+- Cara penulisan untuk request AJAX lebih simpel dan singkat.
+- Lebih kompatibel dengan berbagai browser, khususnya browser versi lama.
+
+Pendapat saya mengenai kedua teknologi tersebut adalah menurut saya Kedua teknologi memiliki kelebihan dan kekurangan masing-masing. Namun, jika Anda membangun aplikasi untuk browser modern dan ingin mengurangi ketergantungan pada library eksternal, Fetch API mungkin pilihan yang lebih baik. Namun, jika kompatibilitas lintas browser (terutama dengan browser lama) adalah prioritas, jQuery mungkin lebih sesuai.
+
+
+### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+

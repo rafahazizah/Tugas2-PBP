@@ -13,6 +13,10 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponseNotFound
+from django.http import JsonResponse
+
 
 @login_required(login_url='/login')
 def show_main(request):
@@ -122,4 +126,35 @@ def kurang_item(rrequest, id):
     item.save()
     # Kembali ke halaman awal
     return HttpResponseRedirect(reverse('main:show_main'))
-    
+
+def get_item_json(request):
+    item_item = Item.objects.filter(user=request.user)
+    return HttpResponse(serializers.serialize('json', item_item))
+
+def delete_item_ajax(request, item_id):
+    if request.method == 'DELETE':
+        item = Item.objects.get(id=item_id)
+        item.delete()
+        return HttpResponse({'status': 'DELETED'}, status=200)
+
+@csrf_exempt
+def add_item_ajax(request):
+    if request.method == 'POST':
+        name = request.POST.get("name")
+        amount = request.POST.get("amount")
+        description = request.POST.get("description")
+        user = request.user
+
+        new_item = Item(name=name, amount=amount, description=description, user=user)
+        new_item.save()
+
+        return HttpResponse(b"CREATED", status=201)
+
+    return HttpResponseNotFound()
+
+@csrf_exempt
+def delete_item_ajax(request, item_id):
+    if request.method == 'DELETE':
+        item = Item.objects.get(id=item_id)
+        item.delete()
+        return HttpResponse({'status': 'DELETED'}, status=200)

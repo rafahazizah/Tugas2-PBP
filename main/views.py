@@ -158,3 +158,4 @@ def delete_item_ajax(request, item_id):
         item = Item.objects.get(id=item_id)
         item.delete()
         return HttpResponse({'status': 'DELETED'}, status=200)
+        
